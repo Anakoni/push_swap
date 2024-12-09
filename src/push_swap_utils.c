@@ -6,7 +6,7 @@
 /*   By: aperceva <aperceva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 19:15:05 by arthur            #+#    #+#             */
-/*   Updated: 2024/12/09 14:46:03 by aperceva         ###   ########.fr       */
+/*   Updated: 2024/12/09 14:55:19 by aperceva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,15 +63,16 @@ void sort_five(t_stack **a, t_stack **b)
     sort_three(a);
 	while (*b)
 	{
-	if ((*b)->value > (*a)->value)
- 		rotate(a, 'a');
-	else if ((*b)->next == NULL && (*a)->value != smin)
-		reverse(a, 'a');
-	else
+	if ((*b)->value < (*a)->value)
 		push(b, a, 'a');
-	}
-	if ((*a)->value > min)
+	else if ((*b)->next == NULL)
+		push(b, a, 'a');
+	else
 		reverse(a, 'a');
+	}
+	while ((*a)->value != min)
+		swap(*a, 'a');
+
 }
 
 int	find_second_min(t_stack *stack)
