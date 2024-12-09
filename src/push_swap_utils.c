@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arthur <arthur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aperceva <aperceva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 19:15:05 by arthur            #+#    #+#             */
-/*   Updated: 2024/12/09 13:24:46 by arthur           ###   ########.fr       */
+/*   Updated: 2024/12/09 14:46:03 by aperceva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,55 +14,64 @@
 
 void	rr(t_stack **a, t_stack **b)
 {
-	rotate(a);
-	rotate(b);
+	rotate(a, 0);
+	rotate(b, 0);
+	ft_printf("%s\n", "rr");
 }
 
 void	rrr(t_stack **a, t_stack **b)
 {
-	reverse(a);
-	reverse(b);
+	reverse(a, 0);
+	reverse(b, 0);
+	ft_printf("%s\n", "rrr");
 }
 
 void	sort_three(t_stack **a)
 {
 	if ((*a)->value > (*a)->next->value && (*a)->next->value < (*a)->next->next->value && (*a)->value < (*a)->next->next->value)
-		swap(*a);
+		swap(*a, 'a');
 	else if ((*a)->value > (*a)->next->value && (*a)->next->value > (*a)->next->next->value)
 	{
-		swap(*a);
-		reverse(a);
+		swap(*a, 'a');
+		reverse(a, 'a');
 	}
 	else if ((*a)->value > (*a)->next->value && (*a)->next->value < (*a)->next->next->value)
-		rotate(a);
+		rotate(a, 'a');
 	else if ((*a)->value < (*a)->next->value && (*a)->value > (*a)->next->next->value)
-		reverse(a);
+		reverse(a, 'a');
 	else if ((*a)->value < (*a)->next->value && (*a)->next->value > (*a)->next->next->value)
 	{
-		swap(*a);
-		rotate(a);
+		swap(*a, 'a');
+		rotate(a, 'a');
 	}
 }
 
 void sort_five(t_stack **a, t_stack **b)
 {
+	int	smin;
+	int	min;
+
+	smin = find_second_min(*a);
+	min = find_min(*a);
     while (list_length(*a) > 3)
     {
-        if ((*a)->value == find_min(*a) || (*a)->value == find_second_min(*a))
-            push(a, b);
+        if ((*a)->value == min || (*a)->value == smin)
+			push(a, b, 'b');
         else
-            rotate(a);
+			rotate(a, 'a');
     }
     sort_three(a);
 	while (*b)
 	{
 	if ((*b)->value > (*a)->value)
- 		rotate(a);
+ 		rotate(a, 'a');
+	else if ((*b)->next == NULL && (*a)->value != smin)
+		reverse(a, 'a');
 	else
-		push(b, a);
+		push(b, a, 'a');
 	}
-	if ((*a)->value > find_min(*a))
-		reverse(a);
+	if ((*a)->value > min)
+		reverse(a, 'a');
 }
 
 int	find_second_min(t_stack *stack)
@@ -98,12 +107,12 @@ int	find_min(t_stack *stack)
 int list_length(t_stack *stack)
 {
     int length = 0;
-    
-    while (stack) 
+
+    while (stack)
     {
         length++;
         stack = stack->next;
     }
-    
+
     return length;
 }

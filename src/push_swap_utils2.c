@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils.c                                  :+:      :+:    :+:   */
+/*   push_swap_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arthur <arthur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aperceva <aperceva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 19:15:05 by arthur            #+#    #+#             */
-/*   Updated: 2024/12/07 19:15:45 by arthur           ###   ########.fr       */
+/*   Updated: 2024/12/09 14:18:36 by aperceva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	swap(t_stack *stack)
+void	swap(t_stack *stack, char c)
 {
 	int	tmp;
 
@@ -22,15 +22,19 @@ void	swap(t_stack *stack)
 		stack->value = stack->next->value;
 		stack->next->value = tmp;
 	}
+	if (!c)
+		return ;
+	ft_printf("s%c\n", c);
 }
 
 void	ss(t_stack *a, t_stack *b)
 {
-	swap(a);
-	swap(b);
+	swap(a, 0);
+	swap(b, 0);
+	ft_printf("%s\n", "ss");
 }
 
-void	push(t_stack **src, t_stack **dest)
+void	push(t_stack **src, t_stack **dest, char c)
 {
 	t_stack	*tmp;
 
@@ -38,9 +42,12 @@ void	push(t_stack **src, t_stack **dest)
 	*src = (*src)->next;
 	tmp->next = *dest;
 	*dest = tmp;
+	if (!c)
+		return ;
+	ft_printf("p%c\n", c);
 }
 
-void	rotate(t_stack **src)
+void	rotate(t_stack **src, char c)
 {
 	t_stack	*first;
 	t_stack	*current;
@@ -56,9 +63,12 @@ void	rotate(t_stack **src)
 	current->next = first;
 	*src = first->next;
 	first->next = NULL;
+	if (!c)
+		return ;
+	ft_printf("r%c\n", c);
 }
 
-void	reverse(t_stack **src)
+void	reverse(t_stack **src, char c)
 {
 	t_stack	*prev;
 	t_stack	*current;
@@ -75,4 +85,7 @@ void	reverse(t_stack **src)
 	prev->next = NULL;
 	current->next = *src;
 	*src = current;
+	if (!c)
+		return ;
+	ft_printf("rr%c\n", c);
 }

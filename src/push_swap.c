@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arthur <arthur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aperceva <aperceva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 21:31:12 by arthur            #+#    #+#             */
-/*   Updated: 2024/12/08 17:55:46 by arthur           ###   ########.fr       */
+/*   Updated: 2024/12/09 13:58:46 by aperceva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,18 +78,12 @@ int main(int argc, char **argv)
         add_to_stack(&a, atoi(argv[i]));
         i++;
     }
-    printf("Initial stacks:\n");
-    print_stack(a, "A");
-    print_stack(b, "B");
     if (argc - 1 == 3)
         sort_three(&a);
     else if (argc - 1 == 5)
+    {
         sort_five(&a, &b);
-    else
-        printf("Tri pour d'autres tailles non implémenté.\n");
-    printf("\nSorted stacks:\n");
-    print_stack(a, "A");
-    print_stack(b, "B");
+    }
     free_stack(&a);
     free_stack(&b);
     return (0);

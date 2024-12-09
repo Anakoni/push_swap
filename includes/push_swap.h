@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arthur <arthur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aperceva <aperceva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 21:40:50 by arthur            #+#    #+#             */
-/*   Updated: 2024/12/08 17:59:40 by arthur           ###   ########.fr       */
+/*   Updated: 2024/12/09 14:16:50 by aperceva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+# include "../libs/libft/libft.h"
 
 typedef struct s_stack
 {
@@ -25,11 +26,11 @@ typedef struct s_stack
 
 void	rr(t_stack **a, t_stack **b);
 void	rrr(t_stack **a, t_stack **b);
-void	reverse(t_stack **src);
-void	rotate(t_stack **src);
-void	push(t_stack **src, t_stack **dest);
+void	reverse(t_stack **src, char c);
+void	rotate(t_stack **src, char c);
+void	push(t_stack **src, t_stack **dest, char c);
 void	ss(t_stack *a, t_stack *b);
-void	swap(t_stack *stack);
+void	swap(t_stack *stack, char c);
 void	sort_three(t_stack **a);
 void	sort_five(t_stack **a, t_stack **b);
 int		find_min(t_stack *stack);
