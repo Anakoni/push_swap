@@ -1,0 +1,7 @@
+{
+	"files.associations": {
+		"ft_striteri.C": "cpp",
+		"ft_putendl_fd.C": "cpp",
+		"libft.h": "c"
+	}
+}
