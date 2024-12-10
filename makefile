@@ -14,10 +14,10 @@ GREEN = \033[32m
 RED = \033[31m
 DEF_COLOR = \033[0m
 
-# Sources 
+# Sources
 
 SRC_DIR = src/
-SRC_FILES = push_swap.c push_swap_utils.c push_swap_utils2.c
+SRC_FILES = push_swap.c push_swap_utils.c push_swap_utils2.c push_swap_utils3.c
 
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 

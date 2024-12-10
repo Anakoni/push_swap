@@ -6,7 +6,7 @@
 /*   By: aperceva <aperceva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 21:40:50 by arthur            #+#    #+#             */
-/*   Updated: 2024/12/09 14:16:50 by aperceva         ###   ########.fr       */
+/*   Updated: 2024/12/10 14:59:26 by aperceva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,5 @@ void	sort_five(t_stack **a, t_stack **b);
 int		find_min(t_stack *stack);
 int		find_second_min(t_stack *stack);
 int 	list_length(t_stack *stack);
+void	sort(t_stack **a, t_stack **b);
 #endif

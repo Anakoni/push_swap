@@ -6,7 +6,7 @@
 /*   By: aperceva <aperceva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 19:15:05 by arthur            #+#    #+#             */
-/*   Updated: 2024/12/09 14:55:19 by aperceva         ###   ########.fr       */
+/*   Updated: 2024/12/10 14:40:08 by aperceva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,31 +89,4 @@ int	find_second_min(t_stack *stack)
 		stack = stack->next;
 	}
 	return (second_min);
-}
-
-int	find_min(t_stack *stack)
-{
-	int	min;
-
-	min = stack->value;
-	while (stack)
-	{
-		if (stack->value < min)
-			min = stack->value;
-		stack = stack->next;
-	}
-	return (min);
-}
-
-int list_length(t_stack *stack)
-{
-    int length = 0;
-
-    while (stack)
-    {
-        length++;
-        stack = stack->next;
-    }
-
-    return length;
 }

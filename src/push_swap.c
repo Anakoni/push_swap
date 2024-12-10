@@ -6,7 +6,7 @@
 /*   By: aperceva <aperceva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 21:31:12 by arthur            #+#    #+#             */
-/*   Updated: 2024/12/09 13:58:46 by aperceva         ###   ########.fr       */
+/*   Updated: 2024/12/10 14:39:42 by aperceva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,20 +70,20 @@ int main(int argc, char **argv)
 
     if (argc < 2)
     {
-        printf("Usage: %s [list of integers]\n", argv[0]);
+        ft_printf("Usage: %s [list of integers]\n", argv[0]);
         return (1);
     }
     while (i < argc)
     {
-        add_to_stack(&a, atoi(argv[i]));
+        add_to_stack(&a, ft_atoi(argv[i]));
         i++;
     }
     if (argc - 1 == 3)
         sort_three(&a);
     else if (argc - 1 == 5)
-    {
         sort_five(&a, &b);
-    }
+    else
+        sort(&a, &b);
     free_stack(&a);
     free_stack(&b);
     return (0);
