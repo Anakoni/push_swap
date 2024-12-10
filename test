@@ -1,10 +1,7 @@
-a : 54 32 12
-b :  8 3 69 74 10
+a : 
+b : 10 74 8 54 32 69 12 3
 
 
 bottom 3
-top 90.
+top 74
 
- check que ltruc  est le plus avantageux puis push le mieux
- declarer top et bottom avec top en haut (forcement le plus grand)
- depiler dans lordre

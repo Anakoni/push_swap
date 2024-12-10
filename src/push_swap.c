@@ -3,88 +3,87 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aperceva <aperceva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arthur <arthur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 21:31:12 by arthur            #+#    #+#             */
-/*   Updated: 2024/12/10 14:39:42 by aperceva         ###   ########.fr       */
+/*   Updated: 2024/12/11 00:05:57 by arthur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-t_stack *new_node(int value)
+t_stack	*new_node(int value)
 {
-    t_stack *node = malloc(sizeof(t_stack));
-    if (!node)
-        return (NULL);
-    node->value = value;
-    node->next = NULL;
-    return (node);
+	t_stack	*node;
+
+	node = malloc(sizeof(t_stack));
+	if (!node)
+		return (NULL);
+	node->value = value;
+	node->next = NULL;
+	return (node);
 }
 
-void add_to_stack(t_stack **stack, int value)
+void	add_to_stack(t_stack **stack, int value)
 {
-    t_stack *new = new_node(value);
-    t_stack *current = *stack;
+	t_stack	*new;
+	t_stack	*current;
 
-    if (!new)
-        return;
-    if (!*stack)
-    {
-        *stack = new;
-        return;
-    }
-    while (current->next)
-        current = current->next;
-    current->next = new;
+	new = new_node(value);
+	current = *stack;
+	if (!new)
+		return ;
+	if (!*stack)
+	{
+		*stack = new;
+		return ;
+	}
+	while (current->next)
+		current = current->next;
+	current->next = new;
 }
 
-void print_stack(t_stack *stack, char *name)
+void	print_stack(t_stack *stack, char *name)
 {
-    printf("%s: ", name);
-    while (stack)
-    {
-        printf("%d ", stack->value);
-        stack = stack->next;
-    }
-    printf("\n");
+	printf("%s: ", name);
+	while (stack)
+	{
+		printf("%d ", stack->value);
+		stack = stack->next;
+	}
+	printf("\n");
 }
 
-void free_stack(t_stack **stack)
+void	free_stack(t_stack **stack)
 {
-    t_stack *tmp;
+	t_stack	*tmp;
 
-    while (*stack)
-    {
-        tmp = *stack;
-        *stack = (*stack)->next;
-        free(tmp);
-    }
+	while (*stack)
+	{
+		tmp = *stack;
+		*stack = (*stack)->next;
+		free(tmp);
+	}
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-    t_stack *a = NULL;
-    t_stack *b = NULL;
-    int i = 1;
+	t_stack	*a;
+	t_stack	*b;
+	int		i;
 
-    if (argc < 2)
-    {
-        ft_printf("Usage: %s [list of integers]\n", argv[0]);
-        return (1);
-    }
-    while (i < argc)
-    {
-        add_to_stack(&a, ft_atoi(argv[i]));
-        i++;
-    }
-    if (argc - 1 == 3)
-        sort_three(&a);
-    else if (argc - 1 == 5)
-        sort_five(&a, &b);
-    else
-        sort(&a, &b);
-    free_stack(&a);
-    free_stack(&b);
-    return (0);
+	i = 1;
+	a = NULL;
+	b = NULL;
+	if (argc < 2)
+		return (0);
+	while (i < argc)
+	{
+		add_to_stack(&a, ft_atoi(argv[i]));
+		i++;
+	}
+	sort(a, b, argc);
+	free_stack(&a);
+	free_stack(&b);
+	return (0);
 }

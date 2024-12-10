@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils3.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aperceva <aperceva@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arthur <arthur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:40:29 by aperceva          #+#    #+#             */
-/*   Updated: 2024/12/10 16:07:39 by aperceva         ###   ########.fr       */
+/*   Updated: 2024/12/10 23:53:29 by arthur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	find_min(t_stack *stack)
 	}
 	return (min);
 }
+
 int	find_max(t_stack *stack)
 {
 	int	max;
@@ -39,68 +40,26 @@ int	find_max(t_stack *stack)
 	return (max);
 }
 
-int list_length(t_stack *stack)
+int	is_sorted(t_stack *a)
 {
-    int length = 0;
-
-    while (stack)
-    {
-        length++;
-        stack = stack->next;
-    }
-
-    return length;
+	while (a && a->next)
+	{
+		if (a->value > a->next->value)
+			return (0);
+		a = a->next;
+	}
+	return (1);
 }
-void	push_to_position(t_stack **a, t_stack **b, char c)
-{
-	if (c == 'b')
-	{
-		while ((*a)->value > (*b)->value)
-		{
-			reverse(b, 'b');
-		}
-		push(a, b, 'b');
-	}
-	else if (c == 'a')
-	{
-		while ((*b)->value > (*a)->value)
-		{
-			reverse(a, 'a');
-		}
-		push(b, a, 'a');
-	}
-}
-void	sort(t_stack **a, t_stack **b)
-{
-	int	i;
-	int	max;
-	int	min;
 
-	i = 0;
-	min = find_min(*a);
-	max = find_max(*a);
-	while (list_length(*a) > 3 && i != 2)
-	{
-		push(a, b, 'b');
-		i++;
-	}
-	while (list_length(*a) > 3)
- 		push_to_position(a, b, 'b');
-	sort_three(a);
-	/* while (*b)
-	{
-		while ((*b)->value == max)
-		{
-			if ((*a)->value == min)
-				push(b, a, 'a');
-			else
-				reverse(a, 'a');
-		}
-		while ((*b)->value > (*a)->value)
-		{
-			reverse(a, 'a');
-		}
-		push(b, a, 'a');
-	} */
+int	list_length(t_stack *stack)
+{
+	int	length;
 
+	length = 0;
+	while (stack)
+	{
+		length++;
+		stack = stack->next;
+	}
+	return (length);
 }
