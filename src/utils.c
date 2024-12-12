@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils2.c                                 :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aperceva <aperceva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/07 19:15:05 by arthur            #+#    #+#             */
-/*   Updated: 2024/12/09 14:18:36 by aperceva         ###   ########.fr       */
+/*   Created: 2024/12/12 06:39:42 by aperceva          #+#    #+#             */
+/*   Updated: 2024/12/12 07:01:01 by aperceva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	swap(t_stack *stack, char c)
+void	swap(t_stack **a, t_stack **b,char c)
 {
 	int	tmp;
 
-	if (stack->value && stack->next->value)
+	if (!a || !*a || !(*a)->next)
+		exit_error(a, b);
+	if ((*a)->value && (*a)->next->value)
 	{
-		tmp = stack->value;
-		stack->value = stack->next->value;
-		stack->next->value = tmp;
+		tmp = (*a)->value;
+		(*a)->value = (*a)->next->value;
+		(*a)->next->value = tmp;
 	}
 	if (!c)
 		return ;
@@ -29,8 +31,8 @@ void	swap(t_stack *stack, char c)
 
 void	ss(t_stack *a, t_stack *b)
 {
-	swap(a, 0);
-	swap(b, 0);
+	swap(&a, &b ,0);
+	swap(&a, &b, 0);
 	ft_printf("%s\n", "ss");
 }
 

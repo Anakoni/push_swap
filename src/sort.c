@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arthur <arthur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aperceva <aperceva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/10 23:50:16 by arthur            #+#    #+#             */
-/*   Updated: 2024/12/11 01:38:26 by arthur           ###   ########.fr       */
+/*   Created: 2024/12/12 06:58:18 by aperceva          #+#    #+#             */
+/*   Updated: 2024/12/12 07:16:10 by aperceva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	sort_three(t_stack **a)
+void	sort_three(t_stack **a, t_stack **b)
 {
 	if ((*a)->value > (*a)->next->value
 		&& (*a)->next->value < (*a)->next->next->value
 		&& (*a)->value < (*a)->next->next->value)
-		swap(*a, 'a');
+		swap(a, b, 'a');
 	else if ((*a)->value > (*a)->next->value
 		&& (*a)->next->value > (*a)->next->next->value)
 	{
-		swap(*a, 'a');
+		swap(a, b, 'a');
 		reverse(a, 'a');
 	}
 	else if ((*a)->value > (*a)->next->value
@@ -33,73 +33,34 @@ void	sort_three(t_stack **a)
 	else if ((*a)->value < (*a)->next->value
 		&& (*a)->next->value > (*a)->next->next->value)
 	{
-		swap(*a, 'a');
+		swap(a, b, 'a');
 		rotate(a, 'a');
 	}
 }
 
 void	sort_five(t_stack **a, t_stack **b)
 {
-	int	smin;
-	int	min;
+	t_stack	*temp_target;
 
-	smin = find_second_min(*a);
-	min = find_min(*a);
-	while (list_length(*a) > 3)
-	{
-		if ((*a)->value == min || (*a)->value == smin)
-			push(a, b, 'b');
-		else
-			rotate(a, 'a');
-	}
-	sort_three(a);
+	while (stack_len(*a) > 3)
+		push(a, b, 'b');
+	sort_three(a, b);
 	while (*b)
 	{
-		if ((*b)->value < (*a)->value)
-			push(b, a, 'a');
-		else if ((*b)->next == NULL)
-			push(b, a, 'a');
+		if (is_max((*b)->value, *a))
+			temp_target = get_smallest(*a);
 		else
-			reverse(a, 'a');
-	}
-	while ((*a)->value != min)
-		swap(*a, 'a');
-}
-
-void	sort_radix(t_stack **a, t_stack **b)
-{
-	t_radix	radix;
-
-	radix.max_num = find_max(*a);
-	radix.max_bits = 0;
-	radix.size = list_length(*a);
-	while ((radix.max_num >> radix.max_bits) != 0)
-		radix.max_bits++;
-	radix.i = 0;
-	while (radix.i < radix.max_bits)
-	{
-		radix.j = 0;
-		while (radix.j < radix.size)
+			temp_target = get_bigger(*a, (*b)->value);
+		while (*a != temp_target)
 		{
-			radix.num = (*a)->value;
-			if (((radix.num >> radix.i) & 1) == 1)
+			if (get_rotation_way(temp_target, a))
 				rotate(a, 'a');
-			else
-				push(a, b, 'b');
-			radix.j++;
+			else if (!get_rotation_way(temp_target, a))
+				reverse(a, 'a');
 		}
-		while (*b)
-			push(b, a, 'a');
-		radix.i++;
+		push(b, a, 'a');
 	}
-}
-
-void	sort(t_stack *a, t_stack *b, int argc)
-{
-	if (argc - 1 == 3)
-		sort_three(&a);
-	else if (argc - 1 == 5)
-		sort_five(&a, &b);
-	else
-		sort_radix(&a, &b);
+	temp_target = get_smallest(*a);
+	while (*a != temp_target)
+		rotate(a, 'a');
 }

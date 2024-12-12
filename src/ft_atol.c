@@ -1,46 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils.c                                  :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arthur <arthur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aperceva <aperceva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/07 19:15:05 by arthur            #+#    #+#             */
-/*   Updated: 2024/12/11 00:38:53 by arthur           ###   ########.fr       */
+/*   Created: 2024/12/12 06:01:08 by aperceva          #+#    #+#             */
+/*   Updated: 2024/12/12 06:01:15 by aperceva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-void	rr(t_stack **a, t_stack **b)
-{
-	rotate(a, 0);
-	rotate(b, 0);
-	ft_printf("%s\n", "rr");
-}
-
-void	rrr(t_stack **a, t_stack **b)
-{
-	reverse(a, 0);
-	reverse(b, 0);
-	ft_printf("%s\n", "rrr");
-}
-
-int	find_second_min(t_stack *stack)
-{
-	int	min;
-	int	second_min;
-
-	min = find_min(stack);
-	second_min = __INT_MAX__;
-	while (stack)
-	{
-		if (stack->value > min && stack->value < second_min)
-			second_min = stack->value;
-		stack = stack->next;
-	}
-	return (second_min);
-}
 
 long	ft_atol(char *str)
 {

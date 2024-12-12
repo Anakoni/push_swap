@@ -17,7 +17,8 @@ DEF_COLOR = \033[0m
 # Sources
 
 SRC_DIR = src/
-SRC_FILES = push_swap.c push_swap_utils.c push_swap_utils2.c push_swap_utils3.c sort.c check.c
+SRC_FILES = push_swap.c parse.c parse2.c stack.c ft_atol.c check.c utils.c \
+			utils2.c sort.c cost.c get.c sort_stack.c
 
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 

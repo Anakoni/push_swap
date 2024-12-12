@@ -3,36 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arthur <arthur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aperceva <aperceva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 00:08:23 by arthur            #+#    #+#             */
-/*   Updated: 2024/12/11 01:05:49 by arthur           ###   ########.fr       */
+/*   Created: 2024/12/12 05:52:53 by aperceva          #+#    #+#             */
+/*   Updated: 2024/12/12 07:14:35 by aperceva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	is_valid_number(const char *str)
+void	exit_error(t_stack **a, t_stack **b)
 {
-	if (*str == '-' || *str == '+')
-		str++;
-	if (!*str)
-		return (0);
-	while (*str)
+	if (a == NULL || a != NULL)
+		free_stack(a);
+	if (b == NULL || b != NULL)
+		free_stack(b);
+	(write(2, RED, 8), write(2, "Error\n", 6), write(2, DEF_COLOR, 8));
+	exit(1);
+}
+
+int	is_sorted(t_stack *a)
+{
+	while (a && a->next)
 	{
-		if (*str < '0' || *str > '9')
+		if (a->value > a->next->value)
 			return (0);
-		str++;
+		a = a->next;
 	}
 	return (1);
 }
 
-int	ft_atoi_check(char *str)
+t_bool	is_min(int n, t_stack *b)
 {
-	long	num;
+	while (b)
+	{
+		if (b->value < n)
+			return (FALSE);
+		b = b->next;
+	}
+	return (TRUE);
+}
 
-	num = ft_atol(str);
-	if (num < INT32_MIN || num > INT32_MAX)
-		return (0);
-	return (1);
+t_bool	is_max(int n, t_stack *b)
+{
+	while (b)
+	{
+		if (b->value > n)
+			return (FALSE);
+		b = b->next;
+	}
+	return (TRUE);
 }

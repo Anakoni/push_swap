@@ -3,47 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arthur <arthur@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aperceva <aperceva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 21:31:12 by arthur            #+#    #+#             */
-/*   Updated: 2024/12/11 01:09:59 by arthur           ###   ########.fr       */
+/*   Updated: 2024/12/12 07:29:27 by aperceva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-t_stack	*new_node(int value)
+static void	sort(t_stack **a, t_stack **b, int size)
 {
-	t_stack	*node;
-
-	node = malloc(sizeof(t_stack));
-	if (!node)
-		return (NULL);
-	node->value = value;
-	node->next = NULL;
-	return (node);
+	if (size == 2 && !is_sorted(*a))
+		swap(a, b, 'a');
+	else if (size == 3)
+		sort_three(a, b);
+	else if (size > 3 && size < 6 && !is_sorted(*a))
+		sort_five(a, b);
+	else if (size > 5 && !is_sorted(*a))
+	 	sort_stacks(a, b);
 }
 
-void	add_to_stack(t_stack **stack, int value)
-{
-	t_stack	*new;
-	t_stack	*current;
-
-	new = new_node(value);
-	current = *stack;
-	if (!new)
-		return ;
-	if (!*stack)
-	{
-		*stack = new;
-		return ;
-	}
-	while (current->next)
-		current = current->next;
-	current->next = new;
-}
-
-void	print_stack(t_stack *stack, char *name)
+/* void	print_stack(t_stack *stack, char *name)
 {
 	printf("%s: ", name);
 	while (stack)
@@ -52,19 +33,7 @@ void	print_stack(t_stack *stack, char *name)
 		stack = stack->next;
 	}
 	printf("\n");
-}
-
-void	free_stack(t_stack **stack)
-{
-	t_stack	*tmp;
-
-	while (*stack)
-	{
-		tmp = *stack;
-		*stack = (*stack)->next;
-		free(tmp);
-	}
-}
+} */
 
 int	main(int argc, char **argv)
 {
@@ -73,24 +42,15 @@ int	main(int argc, char **argv)
 	int		i;
 
 	i = 1;
+	if (argc < 2)
+		exit_error(NULL, NULL);
 	a = NULL;
 	b = NULL;
-	if (argc < 2)
-		return (0);
-	while (i < argc)
-	{
-		if (!is_valid_number(argv[i]) || !ft_atoi_check(argv[i]))
-		{
-			ft_putstr_fd("Error\n", ERROR);
-			free_stack(&a);
-			return (0);
-		}
-		add_to_stack(&a, ft_atoi(argv[i]));
-		i++;
-	}
-	if (has_duplicates(a) || is_sorted(a))
-		sort(a, b, argc);
+	if (!parse_input(argv, &a))
+		exit_error(&a, &b);
+	sort(&a, &b, stack_len(a));
 	free_stack(&a);
-	free_stack(&b);
+	if (b)
+		free_stack(&b);
 	return (0);
 }
