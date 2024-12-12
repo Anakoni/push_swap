@@ -6,7 +6,7 @@
 /*   By: arthur <arthur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:40:29 by aperceva          #+#    #+#             */
-/*   Updated: 2024/12/10 23:53:29 by arthur           ###   ########.fr       */
+/*   Updated: 2024/12/11 01:08:58 by arthur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ int	is_sorted(t_stack *a)
 	while (a && a->next)
 	{
 		if (a->value > a->next->value)
-			return (0);
+			return (1);
 		a = a->next;
 	}
-	return (1);
+	return (0);
 }
 
 int	list_length(t_stack *stack)
@@ -62,4 +62,27 @@ int	list_length(t_stack *stack)
 		stack = stack->next;
 	}
 	return (length);
+}
+
+int	has_duplicates(t_stack *stack)
+{
+	t_stack	*current;
+	t_stack	*checker;
+
+	current = stack;
+	while (current)
+	{
+		checker = current->next;
+		while (checker)
+		{
+			if (current->value == checker->value)
+			{
+				ft_putstr_fd("Error\n", ERROR);
+				return (1);
+			}
+			checker = checker->next;
+		}
+		current = current->next;
+	}
+	return (0);
 }

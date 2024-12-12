@@ -6,7 +6,7 @@
 /*   By: arthur <arthur@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 21:31:12 by arthur            #+#    #+#             */
-/*   Updated: 2024/12/11 00:05:57 by arthur           ###   ########.fr       */
+/*   Updated: 2024/12/11 01:09:59 by arthur           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,17 @@ int	main(int argc, char **argv)
 		return (0);
 	while (i < argc)
 	{
+		if (!is_valid_number(argv[i]) || !ft_atoi_check(argv[i]))
+		{
+			ft_putstr_fd("Error\n", ERROR);
+			free_stack(&a);
+			return (0);
+		}
 		add_to_stack(&a, ft_atoi(argv[i]));
 		i++;
 	}
-	sort(a, b, argc);
+	if (has_duplicates(a) || is_sorted(a))
+		sort(a, b, argc);
 	free_stack(&a);
 	free_stack(&b);
 	return (0);
