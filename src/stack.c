@@ -6,7 +6,7 @@
 /*   By: aperceva <aperceva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 05:54:10 by aperceva          #+#    #+#             */
-/*   Updated: 2024/12/12 07:12:03 by aperceva         ###   ########.fr       */
+/*   Updated: 2024/12/16 12:53:47 by aperceva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int	stack_len(t_stack *stack)
 	}
 	return (length);
 }
+
 int	stack_index(t_stack *stack, int value)
 {
 	int	index;
@@ -73,4 +74,3 @@ int	stack_index(t_stack *stack, int value)
 	}
 	return (-1);
 }
-

@@ -43,6 +43,7 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
+	@$(MAKE) -C $(LIBFT) -s fclean || (echo "$(RED)Error in libft cleaning!$(DEF_COLOR)" && exit 1)
 	@echo "$(GREEN)Full clean successful !$(DEF_COLOR)"
 
 re: fclean all

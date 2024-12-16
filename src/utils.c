@@ -6,13 +6,13 @@
 /*   By: aperceva <aperceva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 06:39:42 by aperceva          #+#    #+#             */
-/*   Updated: 2024/12/12 07:01:01 by aperceva         ###   ########.fr       */
+/*   Updated: 2024/12/16 12:53:24 by aperceva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	swap(t_stack **a, t_stack **b,char c)
+void	swap(t_stack **a, t_stack **b, char c)
 {
 	int	tmp;
 
@@ -31,7 +31,7 @@ void	swap(t_stack **a, t_stack **b,char c)
 
 void	ss(t_stack *a, t_stack *b)
 {
-	swap(&a, &b ,0);
+	swap(&a, &b, 0);
 	swap(&a, &b, 0);
 	ft_printf("%s\n", "ss");
 }

@@ -6,7 +6,7 @@
 /*   By: aperceva <aperceva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 21:31:12 by arthur            #+#    #+#             */
-/*   Updated: 2024/12/12 07:29:27 by aperceva         ###   ########.fr       */
+/*   Updated: 2024/12/16 11:27:14 by aperceva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,8 @@ static void	sort(t_stack **a, t_stack **b, int size)
 	else if (size > 3 && size < 6 && !is_sorted(*a))
 		sort_five(a, b);
 	else if (size > 5 && !is_sorted(*a))
-	 	sort_stacks(a, b);
+		sort_stacks(a, b);
 }
-
-/* void	print_stack(t_stack *stack, char *name)
-{
-	printf("%s: ", name);
-	while (stack)
-	{
-		printf("%d ", stack->value);
-		stack = stack->next;
-	}
-	printf("\n");
-} */
 
 int	main(int argc, char **argv)
 {
@@ -43,7 +32,7 @@ int	main(int argc, char **argv)
 
 	i = 1;
 	if (argc < 2)
-		exit_error(NULL, NULL);
+		return (0);
 	a = NULL;
 	b = NULL;
 	if (!parse_input(argv, &a))

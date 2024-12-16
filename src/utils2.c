@@ -6,7 +6,7 @@
 /*   By: aperceva <aperceva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 06:52:40 by aperceva          #+#    #+#             */
-/*   Updated: 2024/12/12 07:24:03 by aperceva         ###   ########.fr       */
+/*   Updated: 2024/12/16 12:52:57 by aperceva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	rrr(t_stack **a, t_stack **b)
 	reverse(b, 0);
 	ft_printf("%s\n", "rrr");
 }
+
 t_move	*new_move(int cost, t_stack *source, t_stack *target, t_move *move)
 {
 	move = malloc(sizeof(t_move));

@@ -6,7 +6,7 @@
 /*   By: aperceva <aperceva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 07:18:46 by aperceva          #+#    #+#             */
-/*   Updated: 2024/12/12 07:28:23 by aperceva         ###   ########.fr       */
+/*   Updated: 2024/12/16 12:52:44 by aperceva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,9 @@ static t_move	*find_best_move(t_stack **src_stack, t_stack **dest_stack)
 	}
 	return (move);
 }
-	void	fiexecute_move(t_stack **a, t_stack **b
-						, t_move *move)
+
+void	fiexecute_move(t_stack **a, t_stack **b
+					, t_move *move)
 {
 	while (*a != move->source && *b != move->source)
 	{
@@ -86,8 +87,8 @@ void	sort_stacks(t_stack **a, t_stack **b)
 {
 	t_move	*move;
 
-	push(a, b , 'b');
-	push(a, b , 'b');
+	push(a, b, 'b');
+	push(a, b, 'b');
 	while (*a)
 	{
 		move = find_best_move(a, b);
@@ -95,6 +96,6 @@ void	sort_stacks(t_stack **a, t_stack **b)
 		free(move);
 	}
 	while (*b)
-		push(b, a , 'a');
+		push(b, a, 'a');
 	clean_a(a);
 }

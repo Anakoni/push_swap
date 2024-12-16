@@ -6,7 +6,7 @@
 /*   By: aperceva <aperceva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 05:28:18 by aperceva          #+#    #+#             */
-/*   Updated: 2024/12/12 06:23:42 by aperceva         ###   ########.fr       */
+/*   Updated: 2024/12/16 11:36:21 by aperceva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static t_bool	is_valid(char *str)
 		return (FALSE);
 	return (TRUE);
 }
+
 static t_bool	is_max_min(char *str)
 {
 	long	nb;
@@ -83,11 +84,11 @@ static t_bool	parse(int i, char **av, t_stack **stack_a)
 t_bool	parse_input(char **argv, t_stack **a)
 {
 	int		i;
-	char	**age;
+	char	**arg;
 	t_bool	var;
 
 	i = 1;
-	age = argv;
-	var = parse(i, age, a);
+	arg = argv;
+	var = parse(i, arg, a);
 	return (var);
 }

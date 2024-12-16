@@ -6,7 +6,7 @@
 /*   By: aperceva <aperceva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 21:40:50 by arthur            #+#    #+#             */
-/*   Updated: 2024/12/12 07:28:05 by aperceva         ###   ########.fr       */
+/*   Updated: 2024/12/16 12:55:16 by aperceva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@
 # define RED "\033[0;91m"
 # define GREEN "\033[0;92m"
 # define DEF_COLOR "\033[0;39m"
-
-
 
 typedef int	t_bool;
 
@@ -62,7 +60,8 @@ long	ft_atol(char *str);
 int		is_sorted(t_stack *a);
 int		stack_len(t_stack *stack);
 int		stack_index(t_stack *stack, int value);
-int	get_move_cost(t_stack **a, t_stack *source, t_stack **b, t_stack *target);
+int		get_move_cost(t_stack **a, t_stack *source,
+			t_stack **b, t_stack *target);
 void	free_stack(t_stack **stack);
 void	exit_error(t_stack **a, t_stack **b);
 void	rr(t_stack **a, t_stack **b);
@@ -71,7 +70,7 @@ void	reverse(t_stack **src, char c);
 void	rotate(t_stack **src, char c);
 void	ss(t_stack *a, t_stack *b);
 void	push(t_stack **src, t_stack **dest, char c);
-void	swap(t_stack **a, t_stack **b,char c);
+void	swap(t_stack **a, t_stack **b, char c);
 void	sort_three(t_stack **a, t_stack **b);
 void	sort_five(t_stack **a, t_stack **b);
 void	sort_stacks(t_stack **a, t_stack **b);
